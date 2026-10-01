@@ -109,7 +109,9 @@ add_custom_command(
 	OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/__init__.py
 	OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/scene_rdl2
 	COMMAND cp ${CMAKE_CURRENT_SOURCE_DIR}/__init__.py ${CMAKE_CURRENT_BINARY_DIR}/__init__.py
-	COMMAND ln -s ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_BINARY_DIR}/scene_rdl2
+	# -n -f replace the link when the command reruns, instead of creating
+	# another one inside the directory it points to
+	COMMAND ln -sfn ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_BINARY_DIR}/scene_rdl2
     DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/__init__.py
 )
 	
